@@ -4,30 +4,28 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 
 export default function Model({ addPost }) {
   const [open, setOpen] = useState(true);
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({ image: "", uploader: "", timestamp: "", likes: 0 });
 
   const imageUrlAdd = (e) => {
-  const user = JSON.parse(window.localStorage.getItem("userdata"))
- 
-
+    const user = JSON.parse(window.localStorage.getItem("userdata"));
     const image = e.target.value;
-   
+
     const newImage = {
       id: Date.now(),
       image,
       uploader: user.name,
-      timestamp: new  Date().toLocaleString([], { hour: '2-digit', minute: '2-digit',  year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',}),
-      likes: 0,
+      timestamp: new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit', year: 'numeric', month: '2-digit', day: '2-digit' }),
+      likes: 0, 
     };
+
     setPost(newImage);
   };
 
   const handleAdd = () => {
-    addPost(post); 
-    setPost({ image: "", time: "" });
-    setOpen(false);  
+    addPost(post);
+   
+    setPost({ image: "", uploader: "", timestamp: "", likes: 0 });
+    setOpen(false);
   };
 
   return (
